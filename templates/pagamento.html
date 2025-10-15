@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento - Cupcakes Gourmet</title>
+    <style>
+        body {
+            background-color: #fff0f8;
+            font-family: "Poppins", Arial, sans-serif;
+            color: #a03a83;
+            text-align: center;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #f8a3c0, #d8b4e2);
+            color: white;
+            padding: 20px 0;
+            font-size: 1.6em;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 30px;
+        }
+
+        .pix {
+            width: 200px;
+            margin: 20px auto;
+        }
+
+        .animacao {
+            font-size: 2em;
+            animation: girar 2s linear infinite;
+        }
+
+        @keyframes girar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .botao {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #d63384;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+        }
+
+        .botao:hover {
+            background-color: #a03a83;
+        }
+
+        p {
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <header>💳 Pagamento via Pix</header>
+
+    <div class="container">
+        <p><strong>Cliente:</strong> {{ nome }}</p>
+        <p><strong>Endereço:</strong> {{ rua }}, {{ numero }} - {{ bairro }} - {{ cidade }}/{{ estado }}</p>
+
+        <h3>Escaneie o QR Code abaixo para finalizar o pagamento:</h3>
+        <img class="pix" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=CupcakesGourmetPix" alt="QR Code Pix">
+        <div class="animacao">🧁</div>
+
+        <p>Após o pagamento, seu pedido será preparado com muito amor! 💖</p>
+        <p><em>Você será redirecionada automaticamente...</em></p>
+
+        <a href="/status" class="botao">Ir para o status agora</a>
+    </div>
+
+    <script>
+        // Redireciona automaticamente para o status em 5 segundos
+        setTimeout(() => {
+            window.location.href = "/status";
+        }, 5000);
+    </script>
+</body>
+</html>

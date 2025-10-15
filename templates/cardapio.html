@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cardápio - Cupcakes Gourmet</title>
+    <style>
+        body {
+            background-color: #fff0f8;
+            font-family: "Poppins", Arial, sans-serif;
+            color: #a03a83;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #f8a3c0, #d8b4e2);
+            color: white;
+            padding: 20px 0;
+            font-size: 1.8em;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin: 40px auto;
+            max-width: 900px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .item {
+            background-color: white;
+            border-radius: 20px;
+            width: 220px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 15px;
+            transition: transform 0.2s;
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        h3 {
+            color: #d63384;
+            margin: 10px 0 5px;
+        }
+
+        .preco {
+            color: #6f42c1;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 10px;
+            transform: scale(1.3);
+        }
+
+        button {
+            background-color: #d63384;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 40px auto;
+            display: block;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #a03a83;
+        }
+
+        footer {
+            margin-top: 60px;
+            font-size: 0.9em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <header>🧁 Cardápio Cupcakes Gourmet</header>
+
+    <form action="/pedido" method="get">
+        <div class="item">
+            <img src="https://i.imgur.com/1XvC5hT.jpg" alt="Cupcake de Chocolate">
+            <h3>Chocolate</h3>
+            <p class="preco">R$ 8,00</p>
+            <label><input type="checkbox" name="sabores" value="Chocolate"> Selecionar</label>
+        </div>
+
+        <div class="item">
+            <img src="https://i.imgur.com/ZC0vHPP.jpg" alt="Cupcake de Morango">
+            <h3>Morango</h3>
+            <p class="preco">R$ 9,00</p>
+            <label><input type="checkbox" name="sabores" value="Morango"> Selecionar</label>
+        </div>
+
+        <div class="item">
+            <img src="https://i.imgur.com/lFgP2q5.jpg" alt="Cupcake de Baunilha">
+            <h3>Baunilha</h3>
+            <p class="preco">R$ 7,50</p>
+            <label><input type="checkbox" name="sabores" value="Baunilha"> Selecionar</label>
+        </div>
+
+        <div class="item">
+            <img src="https://i.imgur.com/qg8LdCQ.jpg" alt="Cupcake Red Velvet">
+            <h3>Red Velvet</h3>
+            <p class="preco">R$ 10,00</p>
+            <label><input type="checkbox" name="sabores" value="Red Velvet"> Selecionar</label>
+        </div>
+
+        <button type="submit">Finalizar Pedido 🍰</button>
+    </form>
+
+    <footer>© 2025 Cupcakes Gourmet - Feito com 💖 por Mariana</footer>
+</body>
+</html>
+
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Status do Pedido - Cupcakes Gourmet</title>
+    <style>
+        body {
+            background-color: #fff0f8;
+            font-family: "Poppins", Arial, sans-serif;
+            color: #a03a83;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #f8a3c0, #d8b4e2);
+            color: white;
+            padding: 20px 0;
+            font-size: 1.6em;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 500px;
+            background-color: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .animacao {
+            font-size: 3em;
+            animation: girar 2s linear infinite;
+            margin: 20px 0;
+        }
+
+        @keyframes girar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .barra {
+            width: 80%;
+            background-color: #f8d7e9;
+            border-radius: 20px;
+            margin: 30px auto;
+            overflow: hidden;
+            height: 20px;
+        }
+
+        .progresso {
+            height: 100%;
+            background-color: #d63384;
+            width: 0%;
+            border-radius: 20px;
+            transition: width 0.2s;
+        }
+
+        h2 {
+            color: #d63384;
+        }
+
+        #contador {
+            font-size: 1.2em;
+            color: #6f42c1;
+            margin-top: 15px;
+        }
+
+        .botao {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #d63384;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+        }
+
+        .botao:hover {
+            background-color: #a03a83;
+        }
+    </style>
+</head>
+<body>
+    <header>🧁 Seu pedido está a caminho!</header>
+
+    <div class="container">
+        <div class="animacao">🧁</div>
+        <h2>Estamos preparando seus cupcakes com muito carinho 💖</h2>
+        <div class="barra">
+            <div class="progresso" id="progresso"></div>
+        </div>
+        <p id="contador">Tempo estimado: 30 segundos...</p>
+
+        <a href="/" class="botao">Voltar ao início</a>
+    </div>
+
+    <script>
+        let tempo = 30;
+        const contador = document.getElementById("contador");
+        const progresso = document.getElementById("progresso");
+
+        const timer = setInterval(() => {
+            tempo--;
+            const percentual = ((30 - tempo) / 30) * 100;
+            progresso.style.width = percentual + "%";
+            contador.textContent = `Tempo estimado: ${tempo} segundos...`;
+
+            if (tempo <= 0) {
+                clearInterval(timer);
+                contador.textContent = "🍰 Seu pedido está pronto!";
+                progresso.style.width = "100%";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

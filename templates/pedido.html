@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Entrega - Cupcakes Gourmet</title>
+    <style>
+        body {
+            background-color: #fff0f8;
+            font-family: "Poppins", Arial, sans-serif;
+            color: #a03a83;
+            margin: 0;
+            text-align: center;
+        }
+
+        header {
+            background: linear-gradient(90deg, #f8a3c0, #d8b4e2);
+            color: white;
+            padding: 20px 0;
+            font-size: 1.6em;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            background-color: white;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #d63384;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d8b4e2;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #d63384;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #a03a83;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 20px;
+        }
+
+        li {
+            background: #fce4ec;
+            margin: 5px;
+            padding: 8px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>📦 Entrega do Pedido</header>
+
+    <form action="/pedido" method="post">
+        <label>Itens selecionados:</label>
+        <ul>
+            {% for sabor in sabores %}
+                <li>{{ sabor }}</li>
+                <input type="hidden" name="sabores" value="{{ sabor }}">
+            {% endfor %}
+        </ul>
+
+        <label for="nome">Seu nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" required maxlength="9" placeholder="00000-000">
+
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" name="rua" required>
+
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" name="numero" required>
+
+        <label for="complemento">Complemento:</label>
+        <input type="text" id="complemento" name="complemento">
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro" required>
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" required>
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado" required>
+
+        <label for="pagamento">Forma de pagamento:</label>
+        <select id="pagamento" name="pagamento" required>
+            <option value="">Selecione...</option>
+            <option value="Pix">Pix 💸</option>
+            <option value="Cartão de Crédito">Cartão de Crédito 💳</option>
+            <option value="Cartão de Débito">Cartão de Débito 🏦</option>
+            <option value="Dinheiro">Dinheiro 💵</option>
+        </select>
+
+        <button type="submit">Ir para o Pagamento 💖</button>
+    </form>
+
+    <script>
+        // Consulta CEP na API ViaCEP
+        document.getElementById("cep").addEventListener("blur", async function() {
+            const cep = this.value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+                if (!data.erro) {
+                    document.getElementById("rua").value = data.logradouro;
+                    document.getElementById("bairro").value = data.bairro;
+                    document.getElementById("cidade").value = data.localidade;
+                    document.getElementById("estado").value = data.uf;
+                } else {
+                    alert("CEP não encontrado!");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
